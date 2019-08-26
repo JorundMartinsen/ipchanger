@@ -3,12 +3,12 @@ COLOR 0A
 cls 
 :start 
 ECHO. 
-ECHO 1. "PLC Network"			 "192.168.0.100" 
-ECHO 2. "NAT outside"        		 "192.168.12.100"        
+ECHO 1. "Insert Description Here"        "Insert IP Here"
+ECHO 2. "Insert Description Here"        "Insert IP Here"
 ECHO 3. "Insert Description Here"        "Insert IP Here"
 ECHO 4. "Insert Description Here"        "Insert IP Here"
 ECHO 5. "Insert Description Here"        "Insert IP Here"
-ECHO 6. Automatisk / DHCP         
+ECHO 6. Automatic / DHCP         
 ECHO 7. Exit 
 set choice= 
 set /p choice=Type a number and press Enter to assign a new IP to the Local Area Connection : 
@@ -25,7 +25,7 @@ Pause
 ECHO. 
 goto start 
 
-:: Keep in that these commands are looking for the name of your NIC.  Change this accordingly. Currently named "Ethernet"
+:: These commands are looking for the name of your NIC.  Change this accordingly. Currently named "Ethernet"
 :: They will also change your IP to the IP stated after the word static
 :con1 
 ECHO Changing IP for Local Area Connection...
