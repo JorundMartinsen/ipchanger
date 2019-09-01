@@ -30,7 +30,7 @@ namespace ipchanger_forms {
         private int[] _mask;
         public int[] Mask {
             get {
-                return getterV4(_mask, new int[] { 255, 255, 255, 0 });
+                return GetterV4(_mask, new int[] { 255, 255, 255, 0 });
             }
             set {
                 if (value.Length != 4) throw new ArgumentException("Mask needs four values");
@@ -44,7 +44,7 @@ namespace ipchanger_forms {
         private int[] _address;
         public int[] Address {
             get {
-                return getterV4(_address);
+                return GetterV4(_address);
             }
             set {
                 if (value.Length != 4) throw new ArgumentException("Address needs four values");
@@ -54,7 +54,7 @@ namespace ipchanger_forms {
         private int[] _gateway;
         public int[] GateWay {
             get {
-                return getterV4(_gateway);
+                return GetterV4(_gateway);
             }
             set {
                 if (value.Length != 4) throw new ArgumentException("GateWay needs four values");
@@ -64,7 +64,7 @@ namespace ipchanger_forms {
         private int[] _dns1;
         public int[] DNS1 {
             get {
-                return getterV4(_dns1);
+                return GetterV4(_dns1);
             }
             set {
                 if (value.Length != 4) throw new ArgumentException("DNS needs four values");
@@ -74,7 +74,7 @@ namespace ipchanger_forms {
         private int[] _dns2;
         public int[] DNS2 {
             get {
-                return getterV4(_dns2);
+                return GetterV4(_dns2);
             }
             set {
                 if (value.Length != 4) throw new ArgumentException("DNS needs four values");
@@ -82,11 +82,11 @@ namespace ipchanger_forms {
             }
         }
 
-        int[] getterV4(int[] value) {
-            return getterV4(value, new int[] { 0, 0, 0, 0 });
+        private int[] GetterV4(int[] value) {
+            return GetterV4(value, new int[] { 0, 0, 0, 0 });
         }
 
-        int[] getterV4(int[] value, int[] d) {
+        private int[] GetterV4(int[] value, int[] d) {
             if (value.Length == 4) {
                 return value;
             }
