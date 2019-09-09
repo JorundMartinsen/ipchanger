@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using ipchanger_forms.Configuration;
+using ipchanger_forms.Tools;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace ipchanger_forms {
@@ -45,6 +48,15 @@ namespace ipchanger_forms {
         }
         private void SetIp(IIpConfigurationV6 ipConfiguration) {
 
+        }
+
+        private void menuItem7_Click(object sender, System.EventArgs e) {
+            var manager = new NetworkManagement();
+            manager.SetIP(new IpConfigurationV4() {
+                Address = new int[] { 192, 168, 0, 14 },
+                GateWay = new int[] { 192, 168, 0, 1 },
+                Mask = new int[] { 255, 255, 255, 0 },
+            }, "Ethernet");
         }
     }
 }

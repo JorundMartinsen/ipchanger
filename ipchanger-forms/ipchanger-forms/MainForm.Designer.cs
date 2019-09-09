@@ -89,6 +89,7 @@
             // 
             this.menuItem7.Index = 1;
             this.menuItem7.Text = "Info";
+            this.menuItem7.Click += new System.EventHandler(this.menuItem7_Click);
             // 
             // MainMenu
             // 
