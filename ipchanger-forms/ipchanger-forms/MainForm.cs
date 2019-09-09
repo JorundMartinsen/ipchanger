@@ -5,10 +5,11 @@ using System.Windows.Forms;
 
 namespace ipchanger_forms {
     public partial class MainMenu : Form {
-        private IEnumerable<IpConfigurationV4> configs;
+        public List<IpConfigurationV4> Configs { get; set; }
+        public BindingSource BindingSource { get; set; }
         public MainMenu() {
             InitializeComponent();
-            new IpConfigurationV4[] {
+            Configs = new List<IpConfigurationV4> {
                 new IpConfigurationV4() {
                     Address=new int[] {192, 168, 0, 2 },
                     AutoDns = false,
@@ -31,8 +32,9 @@ namespace ipchanger_forms {
                     Mask = new int[] {255,255,255,0},
                     Name = "Standard, 10"
                 }
-            });
-
+            };
+            BindingSource = new BindingSource();
+            BindingSource.DataSource = Configs;
         }
 
         private void cmbInterfaces_SelectedIndexChanged(object sender, System.EventArgs e) {

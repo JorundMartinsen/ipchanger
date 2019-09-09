@@ -47,9 +47,13 @@
             this.lblDefaultGateway = new System.Windows.Forms.Label();
             this.lblSubnetMask = new System.Windows.Forms.Label();
             this.lblCurrentIp = new System.Windows.Forms.Label();
+            this.mainMenuBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.configsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             lblInterface = new System.Windows.Forms.Label();
             this.grpSetConfiguration.SuspendLayout();
             this.grpCurrentSettings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mainMenuBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.configsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lblInterface
@@ -121,12 +125,15 @@
             // 
             this.cmbInterfaces.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbInterfaces.DataSource = this.configsBindingSource;
+            this.cmbInterfaces.DisplayMember = "Name";
             this.cmbInterfaces.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbInterfaces.FormattingEnabled = true;
             this.cmbInterfaces.Location = new System.Drawing.Point(61, 18);
             this.cmbInterfaces.Name = "cmbInterfaces";
             this.cmbInterfaces.Size = new System.Drawing.Size(251, 21);
             this.cmbInterfaces.TabIndex = 1;
+            this.cmbInterfaces.ValueMember = "Name";
             this.cmbInterfaces.SelectedIndexChanged += new System.EventHandler(this.cmbInterfaces_SelectedIndexChanged);
             // 
             // grpSetConfiguration
@@ -159,7 +166,7 @@
             this.grpCurrentSettings.Controls.Add(this.lblCurrentIp);
             this.grpCurrentSettings.Location = new System.Drawing.Point(338, 12);
             this.grpCurrentSettings.Name = "grpCurrentSettings";
-            this.grpCurrentSettings.Size = new System.Drawing.Size(314, 426);
+            this.grpCurrentSettings.Size = new System.Drawing.Size(314, 384);
             this.grpCurrentSettings.TabIndex = 4;
             this.grpCurrentSettings.TabStop = false;
             this.grpCurrentSettings.Text = "Current settings";
@@ -254,11 +261,20 @@
             this.lblCurrentIp.TabIndex = 0;
             this.lblCurrentIp.Text = "IP address";
             // 
+            // mainMenuBindingSource
+            // 
+            this.mainMenuBindingSource.DataSource = typeof(ipchanger_forms.MainMenu);
+            // 
+            // configsBindingSource
+            // 
+            this.configsBindingSource.DataMember = "Configs";
+            this.configsBindingSource.DataSource = this.mainMenuBindingSource;
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(664, 450);
+            this.ClientSize = new System.Drawing.Size(664, 408);
             this.Controls.Add(this.grpCurrentSettings);
             this.Controls.Add(this.grpSetConfiguration);
             this.Menu = this.mainMenu1;
@@ -268,6 +284,8 @@
             this.grpSetConfiguration.PerformLayout();
             this.grpCurrentSettings.ResumeLayout(false);
             this.grpCurrentSettings.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mainMenuBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.configsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -296,6 +314,8 @@
         private System.Windows.Forms.Label lblDefaultGateway;
         private System.Windows.Forms.Label lblSubnetMask;
         private System.Windows.Forms.Label lblCurrentIp;
+        private System.Windows.Forms.BindingSource mainMenuBindingSource;
+        private System.Windows.Forms.BindingSource configsBindingSource;
     }
 }
 
