@@ -7,7 +7,7 @@ using System.Net.NetworkInformation;
 using System;
 
 namespace ipchanger_forms.Tools {
-    class NetworkManagement {
+    public class NetworkManager {
         public IEnumerable<string> GetInterfaces() {
             foreach (var nic in NetworkInterface.GetAllNetworkInterfaces()) {
                 yield return nic.Name;

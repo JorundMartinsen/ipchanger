@@ -25,16 +25,17 @@
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label lblInterface;
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.radioFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
             this.menuItem1 = new System.Windows.Forms.MenuItem();
-            this.menuItem4 = new System.Windows.Forms.MenuItem();
             this.menuItem5 = new System.Windows.Forms.MenuItem();
             this.menuItem6 = new System.Windows.Forms.MenuItem();
             this.menuItem2 = new System.Windows.Forms.MenuItem();
             this.menuItem3 = new System.Windows.Forms.MenuItem();
             this.menuItem7 = new System.Windows.Forms.MenuItem();
             this.cmbInterfaces = new System.Windows.Forms.ComboBox();
+            this.configsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.mainMenuBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.grpSetConfiguration = new System.Windows.Forms.GroupBox();
             this.grpCurrentSettings = new System.Windows.Forms.GroupBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
@@ -47,13 +48,11 @@
             this.lblDefaultGateway = new System.Windows.Forms.Label();
             this.lblSubnetMask = new System.Windows.Forms.Label();
             this.lblCurrentIp = new System.Windows.Forms.Label();
-            this.mainMenuBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.configsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             lblInterface = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.configsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainMenuBindingSource)).BeginInit();
             this.grpSetConfiguration.SuspendLayout();
             this.grpCurrentSettings.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mainMenuBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.configsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lblInterface
@@ -66,12 +65,13 @@
             lblInterface.Text = "Interface";
             lblInterface.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // flowLayoutPanel1
+            // radioFlowPanel
             // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(9, 45);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(303, 375);
-            this.flowLayoutPanel1.TabIndex = 0;
+            this.radioFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.radioFlowPanel.Location = new System.Drawing.Point(9, 45);
+            this.radioFlowPanel.Name = "radioFlowPanel";
+            this.radioFlowPanel.Size = new System.Drawing.Size(303, 333);
+            this.radioFlowPanel.TabIndex = 0;
             // 
             // mainMenu1
             // 
@@ -83,24 +83,18 @@
             // 
             this.menuItem1.Index = 0;
             this.menuItem1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.menuItem4,
             this.menuItem5,
             this.menuItem6});
             this.menuItem1.Text = "File";
             // 
-            // menuItem4
-            // 
-            this.menuItem4.Index = 0;
-            this.menuItem4.Text = "New configuration";
-            // 
             // menuItem5
             // 
-            this.menuItem5.Index = 1;
+            this.menuItem5.Index = 0;
             this.menuItem5.Text = "Edit configuration";
             // 
             // menuItem6
             // 
-            this.menuItem6.Index = 2;
+            this.menuItem6.Index = 1;
             this.menuItem6.Text = "Exit";
             // 
             // menuItem2
@@ -123,27 +117,28 @@
             // 
             // cmbInterfaces
             // 
-            this.cmbInterfaces.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbInterfaces.DataSource = this.configsBindingSource;
-            this.cmbInterfaces.DisplayMember = "Name";
-            this.cmbInterfaces.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbInterfaces.FormattingEnabled = true;
             this.cmbInterfaces.Location = new System.Drawing.Point(61, 18);
             this.cmbInterfaces.Name = "cmbInterfaces";
             this.cmbInterfaces.Size = new System.Drawing.Size(251, 21);
-            this.cmbInterfaces.TabIndex = 1;
-            this.cmbInterfaces.ValueMember = "Name";
-            this.cmbInterfaces.SelectedIndexChanged += new System.EventHandler(this.cmbInterfaces_SelectedIndexChanged);
+            this.cmbInterfaces.TabIndex = 3;
+            // 
+            // configsBindingSource
+            // 
+            this.configsBindingSource.DataMember = "Configs";
+            this.configsBindingSource.DataSource = this.mainMenuBindingSource;
+            // 
+            // mainMenuBindingSource
+            // 
+            this.mainMenuBindingSource.DataSource = typeof(ipchanger_forms.MainMenu);
             // 
             // grpSetConfiguration
             // 
             this.grpSetConfiguration.Controls.Add(lblInterface);
-            this.grpSetConfiguration.Controls.Add(this.flowLayoutPanel1);
+            this.grpSetConfiguration.Controls.Add(this.radioFlowPanel);
             this.grpSetConfiguration.Controls.Add(this.cmbInterfaces);
             this.grpSetConfiguration.Location = new System.Drawing.Point(12, 12);
             this.grpSetConfiguration.Name = "grpSetConfiguration";
-            this.grpSetConfiguration.Size = new System.Drawing.Size(320, 426);
+            this.grpSetConfiguration.Size = new System.Drawing.Size(320, 384);
             this.grpSetConfiguration.TabIndex = 3;
             this.grpSetConfiguration.TabStop = false;
             this.grpSetConfiguration.Text = "Set configuration";
@@ -261,15 +256,6 @@
             this.lblCurrentIp.TabIndex = 0;
             this.lblCurrentIp.Text = "IP address";
             // 
-            // mainMenuBindingSource
-            // 
-            this.mainMenuBindingSource.DataSource = typeof(ipchanger_forms.MainMenu);
-            // 
-            // configsBindingSource
-            // 
-            this.configsBindingSource.DataMember = "Configs";
-            this.configsBindingSource.DataSource = this.mainMenuBindingSource;
-            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -280,22 +266,21 @@
             this.Menu = this.mainMenu1;
             this.Name = "MainMenu";
             this.Text = "Ip Changer";
+            ((System.ComponentModel.ISupportInitialize)(this.configsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainMenuBindingSource)).EndInit();
             this.grpSetConfiguration.ResumeLayout(false);
             this.grpSetConfiguration.PerformLayout();
             this.grpCurrentSettings.ResumeLayout(false);
             this.grpCurrentSettings.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mainMenuBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.configsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel radioFlowPanel;
         private System.Windows.Forms.MainMenu mainMenu1;
         private System.Windows.Forms.MenuItem menuItem1;
-        private System.Windows.Forms.MenuItem menuItem4;
         private System.Windows.Forms.MenuItem menuItem5;
         private System.Windows.Forms.MenuItem menuItem6;
         private System.Windows.Forms.MenuItem menuItem2;
