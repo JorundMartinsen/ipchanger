@@ -15,7 +15,7 @@ namespace ipchanger_forms {
         public MainMenu() {
             InitializeComponent();
             NetworkManager = new NetworkManager();
-            ConfigurationManager = new ConfigurationManager<IpConfigurationV4>(new Uri(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)));
+            ConfigurationManager = new ConfigurationManager<IpConfigurationV4>(new Uri(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/ipChanger.config"));
             Configs = new ObservableCollection<IpConfigurationV4>();
             Configs.CollectionChanged += (object sender, NotifyCollectionChangedEventArgs e) => {
                 SetRadioButtons();
@@ -24,7 +24,11 @@ namespace ipchanger_forms {
                 Configs.Add(conf);
             }
         }
+        /// <summary>
+        /// Clears and fills the flow panel with a radiobutton for each setting
+        /// </summary>
         private void SetRadioButtons() {
+            radioFlowPanel.Controls.Clear();
             foreach (var conf in Configs) {
                 radioFlowPanel.Controls.Add(new CustomRadioButton<IpConfigurationV4>() {
                     Text = conf.AutoIp ? $"{conf.Name}, Auto, {conf.Comment}" : $"{conf.Name}, {conf.Address}, {conf.Comment}",
