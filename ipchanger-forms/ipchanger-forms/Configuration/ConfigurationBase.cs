@@ -1,9 +1,11 @@
 ﻿namespace ipchanger_forms.Configuration {
-        public interface IIpConfigurationBase<T> {
-            string Name { get; set; }
-            string Comment { get; set; }
-            bool AutoIp { get; set; }
-            bool AutoDns { get; set; }
+    public interface IIpConfigurationBase {
+        string Name { get; set; }
+        string Comment { get; set; }
+        bool AutoIp { get; set; }
+        bool AutoDns { get; set; }
+    }
+    public interface IIpConfigurationBase<T> : IIpConfigurationBase {
             T Address { get; set; }
             T GateWay { get; set; }
             T DNS1 { get; set; }
