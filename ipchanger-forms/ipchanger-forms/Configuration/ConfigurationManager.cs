@@ -30,11 +30,12 @@ namespace ipchanger_forms.Configuration {
             if (File.Exists(Uri.AbsolutePath))
                 return JsonConvert.DeserializeObject<IIpConfigurationBase[]>(File.ReadAllText(Uri.AbsolutePath));
             else {
-                //if(typeof(T) == typeof(IpConfigurationV4))
+                if(typeof(T) == typeof(IpConfigurationV4))
                 return new IIpConfigurationBase[] { new IpConfigurationV4() };
-                //if(typeof(T) == typeof(IpConfigurationV6))
-                //return new IIpConfigurationBase[] { new IpConfigurationV6() };
+                if(typeof(T) == typeof(IpConfigurationV6))
+                return new IIpConfigurationBase[] { new IpConfigurationV6() };
             }
+            return new IIpConfigurationBase[] { };
         }
         public async Task SaveConfiguration(IIpConfigurationBase conf) {
             await Task.Run(() => File.WriteAllText(Uri.AbsolutePath, JsonConvert.SerializeObject(conf)));
