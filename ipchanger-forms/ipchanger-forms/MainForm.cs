@@ -20,7 +20,7 @@ namespace ipchanger_forms {
             Configs.CollectionChanged += (object sender, NotifyCollectionChangedEventArgs e) => {
                 SetRadioButtons();
             };
-            foreach (var conf in ConfigurationManager.LoadConfiguration) {
+            foreach (var conf in ConfigurationManager.LoadConfiguration<IIpConfigurationV4>()) {
                 Configs.Add(conf);
             }
         }

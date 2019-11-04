@@ -26,16 +26,15 @@ namespace ipchanger_forms.Configuration {
 
     public class ConfigurationManager<T> : ConfigurationManagerBase where T : IIpConfigurationBase {
         public ConfigurationManager(Uri uri) : base(uri) { }
-        public IIpConfigurationBase[] LoadConfiguration() {
+        public IpConfigurationV4[] LoadConfigurationIpV4() {
             if (File.Exists(Uri.AbsolutePath))
-                return JsonConvert.DeserializeObject<IIpConfigurationBase[]>(File.ReadAllText(Uri.AbsolutePath));
-            else {
-                if(typeof(T) == typeof(IpConfigurationV4))
-                return new IIpConfigurationBase[] { new IpConfigurationV4() };
-                if(typeof(T) == typeof(IpConfigurationV6))
-                return new IIpConfigurationBase[] { new IpConfigurationV6() };
-            }
-            return new IIpConfigurationBase[] { };
+                return JsonConvert.DeserializeObject<IpConfigurationV4[]>(File.ReadAllText(Uri.AbsolutePath));
+            return new IpConfigurationV4[] { new IpConfigurationV4() };
+        }
+        public IpConfigurationV6[] LoadConfigurationIpV6() {
+            if (File.Exists(Uri.AbsolutePath))
+                return JsonConvert.DeserializeObject<IpConfigurationV6[]>(File.ReadAllText(Uri.AbsolutePath));
+            return new IpConfigurationV6[] { new IpConfigurationV6() };
         }
         public async Task SaveConfiguration(IIpConfigurationBase conf) {
             await Task.Run(() => File.WriteAllText(Uri.AbsolutePath, JsonConvert.SerializeObject(conf)));
